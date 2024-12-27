@@ -1,16 +1,16 @@
-package bill2;
+package è®°è´¦;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Bill {		
+public class Billuser {		
 	    private Date date;
 	    private double amount;
 	    private String category;
 	    private String remark;
 
-	    public Bill(Date date, double amount, String category, String remark) {
+	    public Billuser(Date date, double amount, String category, String remark) {
 	        this.date = date;
 	        this.amount = amount;
 	        this.category = category;
@@ -34,13 +34,13 @@ public class Bill {
 	    }
 }
 
-class IncomeBill extends Bill {
+class IncomeBill extends Billuser {
 	public IncomeBill(Date date, double amount, String category, String remark) {
 	        super(date, amount, category, remark);
 	    }
 }
 
-class ExpenseBill extends Bill {
+class ExpenseBill extends Billuser {
 	public ExpenseBill(Date date, double amount, String category, String remark) {
 	        super(date, amount, category, remark);
 	    }
@@ -54,74 +54,74 @@ class BillManagementSystem {
 
 	public void recordIncome() {
 	        Scanner scanner = new Scanner(System.in);
-	        System.out.println("ÇëÊäÈëÊÕÈëĞÅÏ¢:");
+	        System.out.println("è¯·è¾“å…¥æ”¶å…¥ä¿¡æ¯:");
 	        try {
-	            System.out.print("ÈÕÆÚ(YYYY-MM-DD):");
+	            System.out.print("æ—¥æœŸ(YYYY-MM-DD):");
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	            Date date = sdf.parse(scanner.next());
-	            System.out.print("½ğ¶î:");
+	            System.out.print("é‡‘é¢:");
 	            double amount = scanner.nextDouble();
 	            if (amount <= 0) {
-	                throw new IllegalArgumentException("ÊÕÈë½ğ¶î±ØĞëÎªÕıÊı");
+	                throw new IllegalArgumentException("æ”¶å…¥é‡‘é¢å¿…é¡»ä¸ºæ­£æ•°");
 	            }
-	            System.out.print("Àà±ğ(Èç¹¤×Ê¡¢½±½ğµÈ):");
+	            System.out.print("ç±»åˆ«(å¦‚å·¥èµ„ã€å¥–é‡‘ç­‰):");
 	            String category = scanner.next();
-	            System.out.print("±¸×¢:");
+	            System.out.print("å¤‡æ³¨:");
 	            String remark = scanner.next();
 	            IncomeBill bill = new IncomeBill(date, amount, category, remark);
 	            incomeBills.add(bill);
-	            System.out.println("ÊÕÈëÒÑ³É¹¦¼ÇÂ¼!");
+	            System.out.println("æ”¶å…¥å·²æˆåŠŸè®°å½•!");
 	        } catch (Exception e) {
-	            System.out.println("ÊäÈë´íÎó: " + e.getMessage());
+	            System.out.println("è¾“å…¥é”™è¯¯: " + e.getMessage());
 	        }
 	    }
 
 	    public void recordExpense() {
 	        Scanner scanner = new Scanner(System.in);
-	        System.out.println("ÇëÊäÈëÖ§³öĞÅÏ¢:");
+	        System.out.println("è¯·è¾“å…¥æ”¯å‡ºä¿¡æ¯:");
 	        try {
-	            System.out.print("ÈÕÆÚ(YYYY-MM-DD):");
+	            System.out.print("æ—¥æœŸ(YYYY-MM-DD):");
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	            Date date = sdf.parse(scanner.next());
-	            System.out.print("½ğ¶î:");
+	            System.out.print("é‡‘é¢:");
 	            double amount = scanner.nextDouble();
 	            if (amount <= 0) {
-	                throw new IllegalArgumentException("Ö§³ö½ğ¶î±ØĞëÎªÕıÊı");
+	                throw new IllegalArgumentException("æ”¯å‡ºé‡‘é¢å¿…é¡»ä¸ºæ­£æ•°");
 	            }
-	            System.out.print("Àà±ğ(Èç²ÍÒû¡¢½»Í¨¡¢¹ºÎïµÈ):");
+	            System.out.print("ç±»åˆ«(å¦‚é¤é¥®ã€äº¤é€šã€è´­ç‰©ç­‰):");
 	            String category = scanner.next();
-	            System.out.print("±¸×¢:");
+	            System.out.print("å¤‡æ³¨:");
 	            String remark = scanner.next();
 	            ExpenseBill bill = new ExpenseBill(date, amount, category, remark);
 	            expenseBills.add(bill);
 	            currentExpense += amount;
-	            System.out.println("Ö§³öÒÑ³É¹¦¼ÇÂ¼!");
+	            System.out.println("æ”¯å‡ºå·²æˆåŠŸè®°å½•!");
 	        } catch (Exception e) {
-	            System.out.println("ÊäÈë´íÎó: " + e.getMessage());
+	            System.out.println("è¾“å…¥é”™è¯¯: " + e.getMessage());
 	        }
 	    }
 
 	    public void showAllBills() {
-	        System.out.println("ÊÕÈëÕËµ¥:");
+	        System.out.println("æ”¶å…¥è´¦å•:");
 	        for (IncomeBill bill : incomeBills) {
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	            System.out.println("ÈÕÆÚ: " + sdf.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                    ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	            System.out.println("æ—¥æœŸ: " + sdf.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                    ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	        }
-	        System.out.println("Ö§³öÕËµ¥:");
+	        System.out.println("æ”¯å‡ºè´¦å•:");
 	        for (ExpenseBill bill : expenseBills) {
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	            System.out.println("ÈÕÆÚ: " + sdf.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                    ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	            System.out.println("æ—¥æœŸ: " + sdf.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                    ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	        }
 	    }
 
 	    public void queryBills() {
 	        Scanner scanner = new Scanner(System.in);
-	        System.out.println("ÇëÑ¡Ôñ²éÑ¯·½Ê½:");
-	        System.out.println("1. °´ÈÕÆÚ²éÑ¯");
-	        System.out.println("2. °´ÈÕÆÚ·¶Î§²éÑ¯");
-	        System.out.println("3. °´Àà±ğ²éÑ¯");
+	        System.out.println("è¯·é€‰æ‹©æŸ¥è¯¢æ–¹å¼:");
+	        System.out.println("1. æŒ‰æ—¥æœŸæŸ¥è¯¢");
+	        System.out.println("2. æŒ‰æ—¥æœŸèŒƒå›´æŸ¥è¯¢");
+	        System.out.println("3. æŒ‰ç±»åˆ«æŸ¥è¯¢");
 	        int choice = scanner.nextInt();
 	        switch (choice) {
 	            case 1:
@@ -134,100 +134,100 @@ class BillManagementSystem {
 	                queryByCategory();
 	                break;
 	            default:
-	                System.out.println("ÎŞĞ§µÄÑ¡Ôñ");
+	                System.out.println("æ— æ•ˆçš„é€‰æ‹©");
 	        }
 	    }
 
 	    private void queryByDate() {
 	        Scanner scanner = new Scanner(System.in);
 	        try {
-	            System.out.print("ÇëÊäÈëÈÕÆÚ(YYYY-MM-DD):");
+	            System.out.print("è¯·è¾“å…¥æ—¥æœŸ(YYYY-MM-DD):");
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	            Date date = sdf.parse(scanner.next());
-	            System.out.println("ÊÕÈëÕËµ¥:");
+	            System.out.println("æ”¶å…¥è´¦å•:");
 	            for (IncomeBill bill : incomeBills) {
 	                if (bill.getDate().equals(date)) {
 	                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-	                    System.out.println("ÈÕÆÚ: " + sdf1.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                            ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	                    System.out.println("æ—¥æœŸ: " + sdf1.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                            ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	                }
 	            }
-	            System.out.println("Ö§³öÕËµ¥:");
+	            System.out.println("æ”¯å‡ºè´¦å•:");
 	            for (ExpenseBill bill : expenseBills) {
 	                if (bill.getDate().equals(date)) {
 	                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-	                    System.out.println("ÈÕÆÚ: " + sdf1.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                            ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	                    System.out.println("æ—¥æœŸ: " + sdf1.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                            ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	                }
 	            }
 	        } catch (Exception e) {
-	            System.out.println("ÊäÈë´íÎó: " + e.getMessage());
+	            System.out.println("è¾“å…¥é”™è¯¯: " + e.getMessage());
 	        }
 	    }
 
 	    private void queryByDateRange() {
 	        Scanner scanner = new Scanner(System.in);
 	        try {
-	            System.out.print("ÇëÊäÈëÆğÊ¼ÈÕÆÚ(YYYY-MM-DD):");
+	            System.out.print("è¯·è¾“å…¥èµ·å§‹æ—¥æœŸ(YYYY-MM-DD):");
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	            Date startDate = sdf.parse(scanner.next());
-	            System.out.print("ÇëÊäÈë½áÊøÈÕÆÚ(YYYY-MM-DD):");
+	            System.out.print("è¯·è¾“å…¥ç»“æŸæ—¥æœŸ(YYYY-MM-DD):");
 	            Date endDate = sdf.parse(scanner.next());
-	            System.out.println("ÊÕÈëÕËµ¥:");
+	            System.out.println("æ”¶å…¥è´¦å•:");
 	            for (IncomeBill bill : incomeBills) {
 	                if (bill.getDate().after(startDate) && bill.getDate().before(endDate)) {
 	                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-	                    System.out.println("ÈÕÆÚ: " + sdf1.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                            ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	                    System.out.println("æ—¥æœŸ: " + sdf1.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                            ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	                }
 	            }
-	            System.out.println("Ö§³öÕËµ¥:");
+	            System.out.println("æ”¯å‡ºè´¦å•:");
 	            for (ExpenseBill bill : expenseBills) {
 	                if (bill.getDate().after(startDate) && bill.getDate().before(endDate)) {
 	                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-	                    System.out.println("ÈÕÆÚ: " + sdf1.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                            ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	                    System.out.println("æ—¥æœŸ: " + sdf1.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                            ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	                }
 	            }
 	        } catch (Exception e) {
-	            System.out.println("ÊäÈë´íÎó: " + e.getMessage());
+	            System.out.println("è¾“å…¥é”™è¯¯: " + e.getMessage());
 	        }
 	    }
 
 	    private void queryByCategory() {
 	        Scanner scanner = new Scanner(System.in);
-	        System.out.print("ÇëÊäÈëÀà±ğ:");
+	        System.out.print("è¯·è¾“å…¥ç±»åˆ«:");
 	        String category = scanner.next();
-	        System.out.println("ÊÕÈëÕËµ¥:");
+	        System.out.println("æ”¶å…¥è´¦å•:");
 	        for (IncomeBill bill : incomeBills) {
 	            if (bill.getCategory().equals(category)) {
 	                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	                System.out.println("ÈÕÆÚ: " + sdf.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                        ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	                System.out.println("æ—¥æœŸ: " + sdf.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                        ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	            }
 	        }
-	        System.out.println("Ö§³öÕËµ¥:");
+	        System.out.println("æ”¯å‡ºè´¦å•:");
 	        for (ExpenseBill bill : expenseBills) {
 	            if (bill.getCategory().equals(category)) {
 	                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	                System.out.println("ÈÕÆÚ: " + sdf.format(bill.getDate()) + ", ½ğ¶î: " + bill.getAmount() +
-	                        ", Àà±ğ: " + bill.getCategory() + ", ±¸×¢: " + bill.getRemark());
+	                System.out.println("æ—¥æœŸ: " + sdf.format(bill.getDate()) + ", é‡‘é¢: " + bill.getAmount() +
+	                        ", ç±»åˆ«: " + bill.getCategory() + ", å¤‡æ³¨: " + bill.getRemark());
 	            }
 	        }
 	    }
 
 	    public void setMonthlyBudget() {
 	        Scanner scanner = new Scanner(System.in);
-	        System.out.println("ÇëÉèÖÃÔÂ¶ÈÔ¤Ëã:");
+	        System.out.println("è¯·è®¾ç½®æœˆåº¦é¢„ç®—:");
 	        try {
 	            double budget = scanner.nextDouble();
 	            if (budget < 0) {
-	                throw new IllegalArgumentException("Ô¤Ëã½ğ¶î±ØĞëÎªÕıÊı");
+	                throw new IllegalArgumentException("é¢„ç®—é‡‘é¢å¿…é¡»ä¸ºæ­£æ•°");
 	            }
 	            monthlyBudget = budget;
-	            System.out.println("ÔÂ¶ÈÔ¤ËãÒÑÉèÖÃ³É¹¦!");
+	            System.out.println("æœˆåº¦é¢„ç®—å·²è®¾ç½®æˆåŠŸ!");
 	        } catch (Exception e) {
-	            System.out.println("ÊäÈë´íÎó: " + e.getMessage());
+	            System.out.println("è¾“å…¥é”™è¯¯: " + e.getMessage());
 	        }
 	    }
 
@@ -244,10 +244,10 @@ class BillManagementSystem {
 	                expenseCategories.add(bill.getCategory());
 	            }
 	        }
-	        System.out.println("ÔÂ¶ÈÍ³¼Æ±¨¸æ:");
-	        System.out.println("×ÜÊÕÈë: " + totalIncome);
-	        System.out.println("×ÜÖ§³ö: " + totalExpense);
-	        System.out.println("¸÷Àà±ğÖ§³ö:");
+	        System.out.println("æœˆåº¦ç»Ÿè®¡æŠ¥å‘Š:");
+	        System.out.println("æ€»æ”¶å…¥: " + totalIncome);
+	        System.out.println("æ€»æ”¯å‡º: " + totalExpense);
+	        System.out.println("å„ç±»åˆ«æ”¯å‡º:");
 	        for (String category : expenseCategories) {
 	            double categoryTotal = 0;
 	            for (ExpenseBill bill : expenseBills) {
@@ -262,15 +262,15 @@ class BillManagementSystem {
 	    public void run() {
 	        Scanner scanner = new Scanner(System.in);
 	        while (true) {
-	            System.out.println("»¶Ó­Ê¹ÓÃ¸öÈËÕËµ¥¹ÜÀíÏµÍ³");
-	            System.out.println("ÇëÑ¡Ôñ²Ù×÷:");
-	            System.out.println("1. ¼ÇÂ¼ÊÕÈë");
-	            System.out.println("2. ¼ÇÂ¼Ö§³ö");
-	            System.out.println("3. ²é¿´ËùÓĞÕËµ¥");
-	            System.out.println("4. ²éÑ¯ÕËµ¥");
-	            System.out.println("5. ÉèÖÃÔÂ¶ÈÔ¤Ëã");
-	            System.out.println("6. ²é¿´ÔÂ¶ÈÍ³¼Æ±¨¸æ");
-	            System.out.println("7. ÍË³öÏµÍ³");
+	            System.out.println("æ¬¢è¿ä½¿ç”¨ä¸ªäººè´¦å•ç®¡ç†ç³»ç»Ÿ");
+	            System.out.println("è¯·é€‰æ‹©æ“ä½œ:");
+	            System.out.println("1. è®°å½•æ”¶å…¥");
+	            System.out.println("2. è®°å½•æ”¯å‡º");
+	            System.out.println("3. æŸ¥çœ‹æ‰€æœ‰è´¦å•");
+	            System.out.println("4. æŸ¥è¯¢è´¦å•");
+	            System.out.println("5. è®¾ç½®æœˆåº¦é¢„ç®—");
+	            System.out.println("6. æŸ¥çœ‹æœˆåº¦ç»Ÿè®¡æŠ¥å‘Š");
+	            System.out.println("7. é€€å‡ºç³»ç»Ÿ");
 	            int choice = scanner.nextInt();
 	            switch (choice) {
 	                case 1:
@@ -292,10 +292,10 @@ class BillManagementSystem {
 	                    showMonthlyStatistics();
 	                    break;
 	                case 7:
-	                    System.out.println("ÒÑÍË³öÏµÍ³");
+	                    System.out.println("å·²é€€å‡ºç³»ç»Ÿ");
 	                    return;
 	                default:
-	                    System.out.println("ÎŞĞ§µÄÑ¡Ôñ£¬ÇëÖØĞÂÊäÈë");
+	                    System.out.println("æ— æ•ˆçš„é€‰æ‹©ï¼Œè¯·é‡æ–°è¾“å…¥");
 	            }
 	        }
 	    }
